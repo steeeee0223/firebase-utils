@@ -37,7 +37,6 @@ export async function get<T, DBModel extends DocumentData & BaseDBModel>(
             ref = query(ref, ...contraints);
         }
         const docs = await getDocs(ref);
-        console.log(docs);
         docs.forEach((doc) => results.push(unpack(doc)));
         // onSnapshot(ref, (snapshot: QuerySnapshot) => {
         //     snapshot.forEach((doc) => {
@@ -45,7 +44,7 @@ export async function get<T, DBModel extends DocumentData & BaseDBModel>(
         //     });
         // });
     } catch (error) {
-        console.log(error);
+        console.log(`FIREBASE ERROR`, error);
     }
     return results;
 }
@@ -60,7 +59,7 @@ export async function getById<T>(
         const data = await getDoc(doc(ref));
         return unpack(data);
     } catch (error) {
-        console.log(error);
+        console.log(`FIREBASE ERROR`, error);
         return undefined;
     }
 }
@@ -80,10 +79,9 @@ export async function create<T, DBModel extends DocumentData & BaseDBModel>(
         const ref = getCollection(db, collection);
         await setDoc(doc(ref, _data.id), _data);
         const res = await getDoc(doc(ref, _data.id));
-        console.log(res.data());
         return unpack(res);
     } catch (error) {
-        console.log(error);
+        console.log(`FIREBASE ERROR`, error);
         return {} as T;
     }
 }
@@ -96,16 +94,12 @@ export async function update<T, DBModel extends DocumentData & BaseDBModel>(
 ): Promise<T> {
     try {
         const data = { ...updateData, updatedAt: new Date() };
-        console.log(`DATA`, data);
         const ref = getCollection(db, collection);
-        console.log(`REF`, ref);
-        const r = await updateDoc(doc(ref, id), data);
-        console.log(`UPDATED`, r);
+        await updateDoc(doc(ref, id), data);
         const res = await getDoc(doc(ref, id));
-        console.log(`RES`, res);
         return unpack(res);
     } catch (error) {
-        console.log(`ERROR`, error);
+        console.log(`FIREBASE ERROR`, error);
         return {} as T;
     }
 }
@@ -117,6 +111,6 @@ export async function del(collection: string, ids: string[]): Promise<void> {
             await deleteDoc(doc(ref, id));
         });
     } catch (error) {
-        console.log(error);
+        console.log(`FIREBASE ERROR`, error);
     }
 }

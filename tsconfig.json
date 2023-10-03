@@ -22,7 +22,8 @@
 
         /* Other */
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "#/*": ["./test/*"]
         },
         "types": ["vitest/globals"]
     },

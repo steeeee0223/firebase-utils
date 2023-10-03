@@ -29,15 +29,14 @@ export const projectTemplates: Template[] = [
 function createData(
     projectId: string,
     name: string,
-    template: Template,
-    createdBy: string
+    template: Template
 ): Project {
     return {
         projectId,
         name,
         tags: [template.label],
         template: template.value,
-        createdBy: { uid: createdBy, displayName: createdBy, email: "" },
+        createdBy: sampleUser,
         lastModifiedAt: new Date(),
     };
 }
@@ -48,17 +47,10 @@ export const sampleUser: CreatedBy = {
 };
 
 export const sampleProjects: Project[] = [
-    createData(
-        "1",
-        "Sample React",
-        { label: "React", value: "react" },
-        "admin"
-    ),
-    createData("2", "Sample Node", { label: "NodeJs", value: "node" }, "admin"),
-    createData(
-        "3",
-        "Sample React Typescript",
-        { label: "React TypeScript", value: "react-ts" },
-        "admin"
-    ),
+    createData("1", "Sample React", { label: "React", value: "react" }),
+    createData("2", "Sample Node", { label: "NodeJs", value: "node" }),
+    createData("3", "Sample React Typescript", {
+        label: "React TypeScript",
+        value: "react-ts",
+    }),
 ];
