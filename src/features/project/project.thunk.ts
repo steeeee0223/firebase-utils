@@ -3,7 +3,7 @@ import { createAsyncThunk, Update } from "@reduxjs/toolkit";
 
 import { sampleProjects } from "@/data";
 import { getRefId } from "@/lib/file";
-import { CreatedBy, Project } from "./project";
+import { CreatedBy, Project } from "@/schemas";
 import { ProjectState, projectSelector } from "./project.slice";
 import {
     createProject,

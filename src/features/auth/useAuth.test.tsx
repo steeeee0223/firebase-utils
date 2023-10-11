@@ -60,11 +60,9 @@ describe(useAuth, () => {
     });
 
     it("should sign out successfully", async () => {
-        const { result } = renderHookWithProviders(
-            useAuth,
-            {},
-            { preloadedState: { auth: { isLoggedIn: true } } }
-        );
+        const { result } = renderHookWithProviders(useAuth, {
+            preloadedState: { auth: { isLoggedIn: true } },
+        });
 
         expect(result.current.isLoggedIn).toBeTruthy();
         await act(result.current.signOut);

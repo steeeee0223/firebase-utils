@@ -4,7 +4,7 @@ import {
     createSlice,
 } from "@reduxjs/toolkit";
 
-import { Project, SelectedProject } from "./project";
+import { Project, SelectedProject } from "@/schemas";
 import {
     createProjectAsync,
     deleteProjectsAsync,

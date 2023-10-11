@@ -62,3 +62,15 @@ export type Project = {
     createdBy: CreatedBy;
     lastModifiedAt: Date;
 };
+export type ProjectAction =
+    | "edit"
+    | "demo"
+    | "delete"
+    | "rename"
+    | "download"
+    | null;
+
+export type SelectedProject = {
+    id: string;
+    action: ProjectAction;
+};

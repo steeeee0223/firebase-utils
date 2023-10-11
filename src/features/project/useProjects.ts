@@ -3,10 +3,8 @@ import { shallowEqual } from "react-redux";
 import { User } from "firebase/auth";
 
 // import { downloadDirectoryAsync, setLoading } from "@/stores/directory";
+import { Project, ProjectAction, SelectedProject } from "@/schemas";
 import {
-    Project,
-    ProjectAction,
-    SelectedProject,
     createProjectAsync,
     deleteProjectsAsync,
     getProjectsAsync,
